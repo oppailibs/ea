@@ -10,7 +10,6 @@ const wildcards = [
 // Global Variables
 let cachedProxyList = [];
 let proxyIP = "";
-let EDOH = "https://sky.rethinkdns.com/1:-Pf_____9_8A_AMAIgE8kMABVDDmKOHTAKg=";
 
 // Constants
 const WS_READY_STATE_OPEN = 1;
@@ -21,7 +20,6 @@ export default {
     try {
       const url = new URL(request.url);
       const upgradeHeader = request.headers.get("Upgrade");
-      EDOH = env.EDOH_AD || EDOH;
       if (upgradeHeader === "websocket") {
         const ipPortMatch = url.pathname.match(/^\/(.+[:=-]\d+)$/);
 
@@ -525,7 +523,7 @@ async function handleUDPOutbound(webSocket, responseHeader, log) {
     .pipeTo(
       new WritableStream({
         async write(chunk) {
-          const resp = await fetch(EDOH, {
+          const resp = await fetch("https://1.1.1.1/dns-query", {
             method: "POST",
             headers: {
               "content-type": "application/dns-message",
