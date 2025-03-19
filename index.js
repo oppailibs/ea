@@ -24,9 +24,8 @@ export default {
         const ipPortMatch = url.pathname.match(/^\/(.+[:=-]\d+)$/);
 
         if (ipPortMatch) {
-          proxyIP = ipPortMatch[1].replace(/[=:-]/, ":"); // Standarisasi menjadi ip:port
-          console.log(`Direct Proxy IP: ${proxyIP}`);
-          return await websockerHandler(request, proxyIP);
+          proxyIP = ipPortMatch[1];
+          return await websockerHandler(request);
         }
       }
       return new Response(proxyListURL);
