@@ -522,7 +522,7 @@ async function handleUDPOutbound(webSocket, responseHeader, log) {
     .pipeTo(
       new WritableStream({
         async write(chunk) {
-          const resp = await fetch("https://8.8.8.8/dns-query", {
+          const resp = await fetch("https://cloudflare-dns.com/dns-query", {
             method: "POST",
             headers: {
               "content-type": "application/dns-message",
